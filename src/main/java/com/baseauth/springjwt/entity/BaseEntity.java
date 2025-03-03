@@ -31,7 +31,6 @@ public class BaseEntity {
     @UpdateTimestamp
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
-
     private Date updatedAt;
 
     @Column(name = "created_by")
@@ -42,5 +41,8 @@ public class BaseEntity {
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+
+    @Column(name="is_active")
+    private Boolean isActive;
 
 }

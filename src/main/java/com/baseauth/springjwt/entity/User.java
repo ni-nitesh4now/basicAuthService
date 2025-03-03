@@ -1,5 +1,6 @@
 package com.baseauth.springjwt.entity;
 
+import com.baseauth.springjwt.payload.enums.UserType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -38,6 +39,10 @@ public class User extends BaseEntity {
     @Size(max = 120)
     @Column(name = "password")
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_type", nullable = false)
+    private UserType userType;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
