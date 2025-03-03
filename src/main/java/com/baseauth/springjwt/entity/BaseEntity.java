@@ -1,18 +1,16 @@
 package com.baseauth.springjwt.entity;
 
-import java.util.Date;
-
 import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
 
 @MappedSuperclass
 @Getter
@@ -42,7 +40,7 @@ public class BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(name="is_active")
+    @Column(name = "is_active")
     private Boolean isActive;
 
 }

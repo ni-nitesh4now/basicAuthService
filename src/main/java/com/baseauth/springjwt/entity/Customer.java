@@ -24,8 +24,8 @@ public class Customer extends BaseEntity {
 
     @NotBlank
     @Size(max = 100)
-    @Column(name = "company_name", nullable = false)
-    private String companyName;
+    @Column(name = "clien_external_id", nullable = false)
+    private String clientExternalId;
 
     @Size(max = 15)
     @Column(name = "gstin", unique = true)

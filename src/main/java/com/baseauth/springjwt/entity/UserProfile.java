@@ -6,6 +6,9 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -36,4 +39,14 @@ public class UserProfile extends BaseEntity {
 
     @Column(name = "address", columnDefinition = "TEXT")
     private String address;
+
+    @NotBlank
+    @Column(name = "empId", nullable = false)
+    private Long empId;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 }
