@@ -1,6 +1,6 @@
 package com.baseauth.springjwt.security.services;
 
-import com.baseauth.springjwt.entity.User;
+import com.baseauth.springjwt.entity.Credentials;
 import com.baseauth.springjwt.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,9 +18,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
+        Credentials credentials = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
-        return UserDetailsImpl.build(user);
+        return UserDetailsImpl.build(credentials);
     }
 }

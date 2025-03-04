@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -23,17 +22,19 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "updated_by")
-    private String updatedBy;
+    @ManyToOne
+    @JoinColumn(name = "updated_by")
+    private UserProfile updatedBy;
 
     @UpdateTimestamp
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @Column(name = "created_by")
-    @ColumnDefault(value = "Admin")
-    private String createdBy;
+    @ManyToOne
+    @JoinColumn(name = "created_by")
+    private UserProfile createdBy;
+
 
     @CreationTimestamp
     @Column(name = "created_at")

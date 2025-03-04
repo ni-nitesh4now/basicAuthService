@@ -25,6 +25,10 @@ import java.time.LocalDate;
 @Table(name = "orders")
 public class Order extends BaseEntity {
 
+    @ManyToOne
+    @JoinColumn(name = "managed_by", unique = true)
+    private Stakeholders managedBy;
+
     @NotBlank
     @Size(max = 20)
     @Column(name = "order_number", unique = true, nullable = false)
