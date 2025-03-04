@@ -20,12 +20,12 @@ public class Customer extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "user_id", unique = true)
-    private User user;
+    private Credentials credentials;
 
     @NotBlank
     @Size(max = 100)
-    @Column(name = "company_name", nullable = false)
-    private String companyName;
+    @Column(name = "clien_external_id", nullable = false)
+    private String clientExternalId;
 
     @Size(max = 15)
     @Column(name = "gstin", unique = true)

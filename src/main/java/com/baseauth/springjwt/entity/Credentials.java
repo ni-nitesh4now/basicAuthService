@@ -23,7 +23,7 @@ import java.util.Set;
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
-public class User extends BaseEntity {
+public class Credentials extends BaseEntity {
     @NotBlank
     @Size(max = 20)
     @Column(name = "username")

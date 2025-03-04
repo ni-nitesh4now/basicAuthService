@@ -17,7 +17,11 @@ public class Vendor extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "user_id", unique = true)
-    private User user;
+    private Credentials credentials;
+
+    @ManyToOne
+    @JoinColumn(name = "managed_by_id", unique = true)
+    private Stakeholders managedBy;
 
     @NotBlank
     @Size(max = 100)
@@ -57,8 +61,7 @@ public class Vendor extends BaseEntity {
     @Column(name = "bank_account_holder")
     private String bankAccountHolder;
 
-    @Column(name = "rating", precision = 3, scale = 2)
-    @ColumnDefault("0.00")
+    @Column(name = "rating")
     private Double rating = 0.00;
 
     @Column(name = "is_verified")

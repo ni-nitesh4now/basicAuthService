@@ -2,8 +2,13 @@ package com.baseauth.springjwt.entity;
 
 import com.baseauth.springjwt.payload.enums.PodStatus;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.*;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -35,7 +40,23 @@ public class OrderFulfillment extends BaseEntity {
     @JoinColumn(name = "vendor_id")
     private Vendor vendor; // Nullable, as the vehicle may be company-owned
 
-    @Digits(integer = 12, fraction = 2)
+    @ManyToOne
+    @JoinColumn(name = "fulfilled_by")
+    private Stakeholders fulfilledBy; // Added fulfilledBy
+
+    @ManyToOne
+    @JoinColumn(name = "loader_id")
+    private Stakeholders loader;
+
+    @ManyToOne
+    @JoinColumn(name = "placement_person")
+    private Stakeholders placementPerson;
+
+    @ManyToOne
+    @JoinColumn(name = "traffic")
+    private Stakeholders trafficPerson; // Renamed for clarity
+
+    @Digits(integer = 14, fraction = 2)
     @Column(name = "vendor_amount")
     private BigDecimal vendorAmount; // Payment to vendor
 
@@ -74,9 +95,9 @@ public class OrderFulfillment extends BaseEntity {
     @ColumnDefault("false")
     private Boolean isPenalized = false;
 
-    @Digits(integer = 10, fraction = 2)
+    @Digits(integer = 12, fraction = 2)
     @Column(name = "penalty_amount", nullable = false)
-    @ColumnDefault("0")
+    @ColumnDefault("0.00")
     private BigDecimal penaltyAmount = BigDecimal.ZERO;
 
     @Column(name = "penalty_reason", columnDefinition = "TEXT")

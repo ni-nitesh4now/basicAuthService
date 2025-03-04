@@ -1,8 +1,13 @@
 package com.baseauth.springjwt.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
@@ -15,10 +20,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "drivers")
 public class Driver extends BaseEntity {
-
-    @OneToOne
-    @JoinColumn(name = "user_id", unique = true)
-    private User user;
 
     @NotBlank
     @Size(max = 100)

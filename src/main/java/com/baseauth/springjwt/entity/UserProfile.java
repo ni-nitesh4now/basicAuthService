@@ -17,7 +17,7 @@ public class UserProfile extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false, unique = true)
-    private User user;
+    private Credentials credentials;
 
     @NotBlank
     @Size(max = 50)
@@ -36,4 +36,9 @@ public class UserProfile extends BaseEntity {
 
     @Column(name = "address", columnDefinition = "TEXT")
     private String address;
+
+    @NotBlank
+    @Column(name = "empId", nullable = false)
+    private Long empId;
+
 }
