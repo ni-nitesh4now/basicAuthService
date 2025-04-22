@@ -1,10 +1,13 @@
 package com.baseauth.springjwt.entity;
 
 import com.baseauth.springjwt.payload.enums.QuoteStatus;
-import com.baseauth.springjwt.payload.enums.VehicleType;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.*;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -32,8 +35,8 @@ public class VendorQuote extends BaseEntity {
     @JoinColumn(name = "vendor_id", nullable = false)
     private Vendor vendor;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "vehicle_type", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "vehicle_type")
     private VehicleType vehicleType;
 
     @NotNull

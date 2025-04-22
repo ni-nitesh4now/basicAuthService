@@ -1,9 +1,14 @@
 package com.baseauth.springjwt.entity;
 
-import com.baseauth.springjwt.payload.enums.VehicleType;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.*;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -24,8 +29,8 @@ public class Vehicle extends BaseEntity {
     @Column(name = "registration_number", unique = true, nullable = false)
     private String registrationNumber;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "vehicle_type", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "vehicle_type")
     private VehicleType vehicleType;
 
     @NotNull

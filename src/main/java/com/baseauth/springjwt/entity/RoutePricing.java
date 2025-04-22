@@ -1,6 +1,5 @@
 package com.baseauth.springjwt.entity;
 
-import com.baseauth.springjwt.payload.enums.VehicleType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
@@ -50,8 +49,8 @@ public class RoutePricing extends BaseEntity {
     @Column(name = "destination_state", nullable = false)
     private String destinationState;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "vehicle_type", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "vehicle_type_id", nullable = false)
     private VehicleType vehicleType;
 
     @NotNull

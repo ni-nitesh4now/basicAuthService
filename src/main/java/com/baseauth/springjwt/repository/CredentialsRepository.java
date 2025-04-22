@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.baseauth.springjwt.entity.Credentials;
 
 @Repository
-public interface UserRepository extends JpaRepository<Credentials, Long> {
+public interface CredentialsRepository extends JpaRepository<Credentials, Long> {
   Optional<Credentials> findByUsername(String username);
 
   Boolean existsByUsername(String username);

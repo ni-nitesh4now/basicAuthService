@@ -26,13 +26,11 @@ import java.time.LocalDate;
 public class Order extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "managed_by", unique = true)
+    @JoinColumn(name = "managed_by")
     private Stakeholders managedBy;
 
-    @NotBlank
-    @Size(max = 20)
-    @Column(name = "order_number", unique = true, nullable = false)
-    private String orderNumber;
+    @Column(name = "indent_number")
+    private String indentNumber;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
@@ -40,18 +38,17 @@ public class Order extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "pickup_warehouse_id", nullable = false)
-    private CustomerWarehouse pickupWarehouse;
+    private ClientWarehouse pickupWarehouse;
 
     @ManyToOne
     @JoinColumn(name = "delivery_warehouse_id", nullable = false)
-    private CustomerWarehouse deliveryWarehouse;
+    private ClientWarehouse deliveryWarehouse;
 
-    @NotBlank
+    @NotBlank(message = "")
     @Size(max = 100)
     @Column(name = "cargo_type", nullable = false)
     private String cargoType;
 
-    @NotNull
     @Digits(integer = 10, fraction = 2)
     @Column(name = "cargo_weight")
     private BigDecimal cargoWeight; // Cargo weight in tons
@@ -60,8 +57,9 @@ public class Order extends BaseEntity {
     @Column(name = "cargo_volume")
     private BigDecimal cargoVolume; // Cargo volume in cubic meters
 
-    @Column(name = "required_vehicle_type", nullable = false)
-    private String requiredVehicleType;
+    @ManyToOne
+    @JoinColumn(name = "required_vehicle_type_id")
+    private VehicleType requiredVehicleType;
 
     @NotNull
     @Column(name = "pickup_date", nullable = false)

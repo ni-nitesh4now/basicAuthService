@@ -1,9 +1,14 @@
 package com.baseauth.springjwt.entity;
 
+import com.baseauth.springjwt.payload.enums.StakeHolderType;
+import com.baseauth.springjwt.payload.enums.UserType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @Getter
@@ -12,12 +17,8 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "user_profiles")
-public class UserProfile extends BaseEntity {
-
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false, unique = true)
-    private Credentials credentials;
+@Table(name = "stakeholders")
+public class Stakeholders extends BaseEntity {
 
     @NotBlank
     @Size(max = 50)
@@ -34,8 +35,14 @@ public class UserProfile extends BaseEntity {
     @Column(name = "phone", nullable = false)
     private String phone;
 
+    @Column(name = "email", columnDefinition = "TEXT")
+    private String email;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    private StakeHolderType stakeHolderType;
+
     @NotBlank
     @Column(name = "empId", nullable = false)
     private Long empId;
-
 }

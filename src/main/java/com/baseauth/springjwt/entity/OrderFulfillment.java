@@ -53,7 +53,7 @@ public class OrderFulfillment extends BaseEntity {
     private Stakeholders placementPerson;
 
     @ManyToOne
-    @JoinColumn(name = "traffic")
+    @JoinColumn(name = "traffic_person")
     private Stakeholders trafficPerson; // Renamed for clarity
 
     @Digits(integer = 14, fraction = 2)
@@ -63,8 +63,8 @@ public class OrderFulfillment extends BaseEntity {
     @Column(name = "actual_pickup_time")
     private LocalDateTime actualPickupTime;
 
-    @Column(name = "actual_delivery_time")
-    private LocalDateTime actualDeliveryTime;
+    @Column(name = "expected_delivery_time")
+    private LocalDateTime expectedDeliveryTime;
 
     @NotBlank
     @Size(max = 20)

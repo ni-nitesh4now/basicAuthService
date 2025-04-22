@@ -23,7 +23,7 @@ public class BaseEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "updated_by")
+    @JoinColumn(name = "updated_by", nullable = false)
     private UserProfile updatedBy;
 
     @UpdateTimestamp
@@ -32,9 +32,8 @@ public class BaseEntity {
     private Date updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "created_by")
+    @JoinColumn(name = "created_by", nullable = false)
     private UserProfile createdBy;
-
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -42,6 +41,6 @@ public class BaseEntity {
     private Date createdAt;
 
     @Column(name = "is_active")
-    private Boolean isActive;
+    private Boolean isActive = true;
 
 }

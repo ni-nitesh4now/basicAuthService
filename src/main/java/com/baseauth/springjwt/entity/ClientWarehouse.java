@@ -15,12 +15,12 @@ import java.io.Serializable;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "customer_warehouses")
-public class CustomerWarehouse extends BaseEntity implements Serializable {
+@Table(name = "client_warehouses")
+public class ClientWarehouse extends BaseEntity{
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
     @NotBlank
     @Size(max = 100)
@@ -44,7 +44,7 @@ public class CustomerWarehouse extends BaseEntity implements Serializable {
     @NotBlank
     @Size(max = 10)
     @Column(name = "pincode", nullable = false)
-    private String pincode;
+    private Long pinCode;
 
     @Column(name = "geolocation", columnDefinition = "POINT")
     private String geolocation; //lat,long

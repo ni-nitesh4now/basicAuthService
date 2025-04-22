@@ -1,4 +1,4 @@
-package com.baseauth.springjwt.entity;
+package com.baseauth.springjwt.entity.mongo;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
